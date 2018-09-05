@@ -36,6 +36,15 @@
                 }
             },
             {
+                "command": "duffle.sortBundleExplorer",
+                "title": "Sort Bundle Explorer",
+                "category": "Duffle",
+                "icon": {
+                    "light": "images/light/sort.svg",
+                    "dark": "images/dark/sort.svg"
+                }
+            },
+            {
                 "command": "duffle.bundleStatus",
                 "title": "Status",
                 "category": "Duffle"
@@ -84,6 +93,11 @@
             "view/title": [
                 {
                     "command": "duffle.refreshBundleExplorer",
+                    "when": "view == duffle.bundleExplorer",
+                    "group": "navigation"
+                },
+                {
+                    "command": "duffle.sortBundleExplorer",
                     "when": "view == duffle.bundleExplorer",
                     "group": "navigation"
                 },

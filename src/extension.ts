@@ -18,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const subscriptions = [
         vscode.commands.registerCommand('duffle.refreshBundleExplorer', () => bundleExplorer.refresh()),
+        vscode.commands.registerCommand('duffle.sortBundleExplorer', () => bundleExplorer.toggleSort()),
         vscode.commands.registerCommand('duffle.bundleStatus', (node) => bundleStatus(node)),
         vscode.commands.registerCommand('duffle.bundleUpgrade', (node) => bundleUpgrade(node)),
         vscode.commands.registerCommand('duffle.build', build),
