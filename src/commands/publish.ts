@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
-import { promptBundle, fileBundleSelection, BundleSelection } from '../utils/bundleselection';
+import { promptBundle, fileBundleSelection, BundleSelection, bundleJSONPath } from '../utils/bundleselection';
 import { showDuffleResult, refreshRepoExplorer, longRunning } from '../utils/host';
 import { succeeded, Errorable, map, failed } from '../utils/errorable';
 import { cantHappen } from '../utils/never';
@@ -55,8 +55,7 @@ async function publishCore(bundlePick: BundleSelection): Promise<void> {
 
 async function publishTo(bundlePick: BundleSelection, repo: string): Promise<Errorable<string>> {
     if (bundlePick.kind === 'folder') {
-        const folderPath = bundlePick.path;
-        const bundlePath = path.join(folderPath, "cnab", "bundle.json");
+        const bundlePath = bundleJSONPath(bundlePick);
         const repoBundlesDir = path.join(duffle.home(shell.shell), "repositories", repo, "bundles");
         const repoPath = path.join(repoBundlesDir, `${bundlePick.label}.json`);
         const publishResult = await longRunning(`Duffle publishing ${bundlePath}`,

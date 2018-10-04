@@ -21,7 +21,7 @@ export interface RepoBundleSelection {
 export type BundleSelection = FolderBundleSelection | RepoBundleSelection;
 
 export async function promptBundle(prompt: string): Promise<BundleSelection | undefined> {
-    const bundles = await vscode.workspace.findFiles('**/cnab/bundle.json');
+    const bundles = await vscode.workspace.findFiles('**/bundle.json');
     if (!bundles || bundles.length === 0) {
         await vscode.window.showErrorMessage("This command requires a bundle file in the current workspace.");
         return undefined;
@@ -38,7 +38,7 @@ export async function promptBundle(prompt: string): Promise<BundleSelection | un
 }
 
 export function fileBundleSelection(bundleFile: vscode.Uri): BundleSelection {
-    const bundleDir = path.dirname(path.dirname(bundleFile.fsPath));
+    const bundleDir = path.dirname(bundleFile.fsPath);
     return {
         kind: 'folder',
         label: path.basename(bundleDir),
