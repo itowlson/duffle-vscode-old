@@ -6,7 +6,7 @@ import { RepoBundle, RepoBundleRef, LocalBundleRef, LocalBundle } from '../duffl
 import { succeeded, map, Errorable } from '../utils/errorable';
 import * as shell from '../utils/shell';
 import { cantHappen } from '../utils/never';
-import { promptBundle, BundleSelection, fileBundleSelection, repoBundleSelection, bundleFilePath, suggestName, localBundleSelection } from '../utils/bundleselection';
+import { promptBundleFile, BundleSelection, fileBundleSelection, repoBundleSelection, bundleFilePath, suggestName, localBundleSelection } from '../utils/bundleselection';
 
 export async function generateCredentials(target?: any): Promise<void> {
     if (!target) {
@@ -25,7 +25,7 @@ export async function generateCredentials(target?: any): Promise<void> {
 }
 
 async function generateCredentialsPrompted(): Promise<void> {
-    const bundlePick = await promptBundle("Select the bundle to generate credentials for");
+    const bundlePick = await promptBundleFile("Select the bundle to generate credentials for");
 
     if (!bundlePick) {
         return;
