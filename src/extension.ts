@@ -145,14 +145,19 @@ async function installationUninstall(bundle: InstallationRef): Promise<void> {
 }
 
 async function importBundle(): Promise<void> {
-    const openUris = await vscode.window.showOpenDialog({ filters: filters, canSelectFiles: true, canSelectFolders: false, canSelectMany: false });
+    const openUris = await vscode.window.showOpenDialog({
+        canSelectFiles: true,
+        canSelectFolders: false,
+        canSelectMany: false,
+        filters: filters
+    });
     if (!openUris || openUris.length !== 1) {
         return;
     }
 
     const openUri = openUris[0];
     if (openUri.scheme !== 'file') {
-        await vscode.window.showErrorMessage("This command requires a filesystem input");
+        await vscode.window.showErrorMessage('Bundles to be imported must be on the filesystem');
         return;
     }
 
