@@ -22,6 +22,8 @@
         "onCommand:duffle.build",
         "onCommand:duffle.push",
         "onCommand:duffle.install",
+        "onCommand:duffle.import",
+        "onCommand:duffle.export",
         "onCommand:duffle.generateCredentials",
         "onCommand:duffle.refreshBundleExplorer",
         "onCommand:duffle.refreshRepoExplorer",
@@ -80,6 +82,16 @@
             {
                 "command": "duffle.install",
                 "title": "Install Bundle",
+                "category": "Duffle"
+            },
+            {
+                "command": "duffle.import",
+                "title": "Import Bundle",
+                "category": "Duffle"
+            },
+            {
+                "command": "duffle.export",
+                "title": "Export Bundle",
                 "category": "Duffle"
             },
             {
@@ -211,6 +223,11 @@
                     "group": "1"
                 },
                 {
+                    "command": "duffle.export",
+                    "when": "view == duffle.repoExplorer && viewItem == duffle.repoBundle",
+                    "group": "3"
+                },
+                {
                     "command": "duffle.install",
                     "when": "view == duffle.bundleExplorer && viewItem == duffle.localBundle",
                     "group": "1"
@@ -224,6 +241,11 @@
                     "command": "duffle.push",
                     "when": "view == duffle.bundleExplorer && viewItem == duffle.localBundle",
                     "group": "2"
+                },
+                {
+                    "command": "duffle.export",
+                    "when": "view == duffle.bundleExplorer && viewItem == duffle.localBundle",
+                    "group": "3"
                 },
                 {
                     "command": "duffle.credentialsetDelete",

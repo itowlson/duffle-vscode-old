@@ -18,6 +18,7 @@ import { succeeded } from './utils/errorable';
 import { selectProjectCreator } from './projects/ui';
 import { exposeParameter } from './commands/exposeparameter';
 import { generateCredentials } from './commands/generatecredentials';
+import { exportBundle } from './commands/exportbundle';
 
 const duffleDiagnostics = vscode.languages.createDiagnosticCollection("Duffle");
 
@@ -37,6 +38,8 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('duffle.build', build),
         vscode.commands.registerCommand('duffle.push', push),
         vscode.commands.registerCommand('duffle.install', install),
+        vscode.commands.registerCommand('duffle.import', importBundle),
+        vscode.commands.registerCommand('duffle.export', exportBundle),
         vscode.commands.registerCommand('duffle.generateCredentials', generateCredentials),
         vscode.commands.registerCommand('duffle.refreshBundleExplorer', () => bundleExplorer.refresh()),
         vscode.commands.registerCommand('duffle.refreshRepoExplorer', () => repoExplorer.refresh()),
@@ -138,6 +141,10 @@ async function installationUninstall(bundle: InstallationRef): Promise<void> {
     }
 
     await showDuffleResult('uninstall', bundle.installationName, uninstallResult);
+}
+
+async function importBundle(): Promise<void> {
+    await vscode.window.showInformationMessage("import");
 }
 
 async function credentialsetDelete(credentialSet: CredentialSetRef): Promise<void> {

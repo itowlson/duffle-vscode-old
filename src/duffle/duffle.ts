@@ -115,6 +115,11 @@ export async function installBundle(sh: shell.Shell, bundleName: string, name: s
     return await invokeObj(sh, 'install', `${name} ${bundleName} ${paramsArgs(params)} ${credentialArg(credentialSet)}`, {}, (s) => null);
 }
 
+export async function exportBundle(sh: shell.Shell, bundleName: string, destination: string, thick: boolean): Promise<Errorable<null>> {
+    const thickFlag = thick ? '-f' : '';
+    return await invokeObj(sh, 'export', `${bundleName} ${thickFlag} -d "${destination}"`, {}, (s) => null);
+}
+
 function paramsArgs(parameters: { [key: string]: string }): string {
     return pairs.fromStringMap(parameters)
         .filter((p) => !!p.value)
