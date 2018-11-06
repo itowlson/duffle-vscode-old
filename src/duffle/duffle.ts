@@ -120,6 +120,10 @@ export async function exportBundle(sh: shell.Shell, bundleName: string, destinat
     return await invokeObj(sh, 'export', `${bundleName} ${thickFlag} -d "${destination}"`, {}, (s) => null);
 }
 
+export async function importBundle(sh: shell.Shell, filePath: string): Promise<Errorable<null>> {
+    return await invokeObj(sh, 'import', `"${filePath}"`, {}, (s) => null);
+}
+
 function paramsArgs(parameters: { [key: string]: string }): string {
     return pairs.fromStringMap(parameters)
         .filter((p) => !!p.value)

@@ -8,6 +8,7 @@ import { map, Errorable } from '../utils/errorable';
 import * as shell from '../utils/shell';
 import { cantHappen } from '../utils/never';
 import { BundleSelection, repoBundleSelection, localBundleSelection, promptLocalBundle } from '../utils/bundleselection';
+import { filters } from '../utils/importexport';
 
 export async function exportBundle(target?: any): Promise<void> {
     if (!target) {
@@ -41,10 +42,6 @@ async function exportLocalBundle(bundle: LocalBundle): Promise<void> {
 }
 
 async function exportCore(bundlePick: BundleSelection): Promise<void> {
-    const filters = {
-        'Manifest only': ['json'],
-        'Full bundle': ['tgz']
-    };
     const saveUri = await vscode.window.showSaveDialog({ filters: filters });
     if (!saveUri) {
         return;
